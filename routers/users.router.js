@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const usersController = require("../controllers/users.controller")
 
 //Todo remove
 const users = [
@@ -32,9 +33,18 @@ router.get("/:id", (req, res) => {
         }
         res.status(404).send({message: "User not found"});
 });
+
+
 router.post("/", (req, res) =>{
-    console.log(req.body);
+    usersController.createUser(req.body);
     res.status(201).send("User created");
   });
+
+
+  router.delete("/:id", (req, res)=>{
+    const userId = req.params.id;
+    usersController.deleteUser(userId);
+    res.send({message: "User deleted"});
+  })
   
   module.exports = router;
