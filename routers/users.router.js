@@ -19,7 +19,9 @@ const users = [
 
 ]
 
-
+router.get("/", (req, res) =>{
+    res.send(users);
+});
 
 router.get("/:id", (req, res) => {
     for(let user of users)
@@ -45,6 +47,6 @@ router.post("/", (req, res) =>{
     const userId = req.params.id;
     usersController.deleteUser(userId);
     res.send({message: "User deleted"});
-  })
+  });
   
   module.exports = router;
