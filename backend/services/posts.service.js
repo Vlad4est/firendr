@@ -1,4 +1,8 @@
 const postService ={
+    getPosts: async () => {
+        console.log("Reached post service");
+        
+    },
     createPost: (post) =>{
         console.log("Reached post service");
         console.log(post);
