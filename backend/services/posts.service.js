@@ -1,12 +1,15 @@
-const postService ={
+const PostModel = require("../data/posts.model");
+
+const postService = {
     getPosts: async () => {
-        console.log("Reached post service");
-        
+        return await PostModel.find();
     },
-    createPost: (post) =>{
-        console.log("Reached post service");
+
+    createPost: async (postData) =>{
+        const post = await PostModel.create(postData);
         console.log(post);
     },
+
     deletePost: (postId) =>{
         console.log(`Reached service post ${postId}`);
         console.log(postId);

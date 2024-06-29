@@ -3,16 +3,14 @@ const router = express.Router();
 const usersController = require("../controllers/users.controller")
 
 
-
+//Router for getting all users
 router.get("/", usersController.getUsers);
+//Router for getting one user
 router.get("/:id", usersController.getUser);
+//Router for creating a user
 router.post("/", usersController.createUser);
+//Router for deleting a user
 router.delete("/", usersController.deleteUser);
-/*
-router.delete("/:id", (req, res)=>{
-    const userId = req.params.id;
-    usersController.deleteUser(userId);
-    res.send({message: "User deleted"});
-  });
-  */
-  module.exports = router;
+
+
+module.exports = router;

@@ -2,13 +2,23 @@ const mongoose = require("mongoose");
 
 const UserModel = mongoose.model("User",
     {
-        id: Number,
+        id: {
+            type: Number,
+            required: true
+        },
         username: {
             type: String,
             required: true
         },
-        password: String,
-        email: Number
+        password: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
+            required: false,
+            match: [/\S+@\S+\.\S+/, 'Email is invalid']
+        }
     }
 );
 

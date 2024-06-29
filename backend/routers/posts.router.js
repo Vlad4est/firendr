@@ -2,23 +2,10 @@ const express = require("express");
 const router = express.Router();
 const postsController = require("../controllers/posts.controller");
 
-
-router.get("/", (req, res) =>{
-    res.send("Test");
-});
-
-router.get("/:id", (req, res) => {
-    res.send("Test");
-});
+//Router for getting all posts
+router.get("/", postsController.getPosts);
+//Router for creating a post
+router.post("/", postsController.createPost);
 
 
-router.post("/", (req, res) =>{
-    postsController.createPost(req.body);
-  });
-
-
-  router.delete("/:id", (req, res)=>{
-    res.send("Test");
-  });
-
-  module.exports = router;
+module.exports = router;
