@@ -4,7 +4,9 @@ const UserModel = mongoose.model("User",
     {
         id: {
             type: Number,
-            required: true
+            required: true,
+            unique: true,
+            min: 1
         },
         username: {
             type: String,
@@ -21,5 +23,7 @@ const UserModel = mongoose.model("User",
         }
     }
 );
+
+
 
 module.exports = UserModel;
