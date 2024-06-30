@@ -21,6 +21,9 @@ const UserModel = mongoose.model("User",
             required: false,
             match: [/\S+@\S+\.\S+/, 'Email is invalid']
         }
+    },
+    {
+        timestamps: true
     }
 );
 

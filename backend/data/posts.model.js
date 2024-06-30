@@ -28,6 +28,9 @@ const PostModel = mongoose.model("Post",
                 message: "User with the given user_id does not exist."
             }
         }
+    }, 
+    {
+        timestamps: true
     }
 );
 
