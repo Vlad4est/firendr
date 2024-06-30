@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const UserModel = require("../data/users.model")
 
-const PostModel = mongoose.model("Post",
+const PostSchema = new mongoose.Schema(
     {
         id: {
             type: Number,
@@ -28,10 +28,12 @@ const PostModel = mongoose.model("Post",
                 message: "User with the given user_id does not exist."
             }
         }
-    }, 
+    },
     {
         timestamps: true
     }
 );
+
+const PostModel = mongoose.model("Post", PostSchema);
 
 module.exports = PostModel;

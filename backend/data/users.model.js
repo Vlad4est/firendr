@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserModel = mongoose.model("User",
+const UserSchema = mongoose.Schema(
     {
         id: {
             type: Number,
@@ -27,6 +27,6 @@ const UserModel = mongoose.model("User",
     }
 );
 
-
+const UserModel = mongoose.model("User", UserSchema);
 
 module.exports = UserModel;
