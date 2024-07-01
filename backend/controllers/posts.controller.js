@@ -1,3 +1,4 @@
+const PostModel = require("../data/posts.model");
 const postService = require("../services/posts.service")
 
 const postsController = {
@@ -14,9 +15,14 @@ const postsController = {
         }
        
     },
-    deletePost: (postId) => {
-        console.log(`Deleted post with id ${postId}`);
-        postService.deletePost(postId);
+    deletePost: async (req, res) => {
+        try {
+            postId = parseInt(req.params.id);
+            const result = await postService.deletePost(postId);
+            res.status(200).send(result);
+        } catch (error) {
+            res.status(400).send(error);
+        }
     }
 }
 

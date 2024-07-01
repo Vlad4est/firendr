@@ -10,9 +10,8 @@ const postService = {
         console.log(post);
     },
 
-    deletePost: (postId) =>{
-        console.log(`Reached service post ${postId}`);
-        console.log(postId);
+    deletePost: async(postId) =>{
+        return await PostModel.deleteOne({ id: postId });
     }
 
 }
