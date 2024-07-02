@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent  {
   username: string = "";
+  password: string = "";
 
   login() {
     console.log(this.username);
