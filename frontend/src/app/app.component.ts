@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  isLogedIn(): boolean {
+    return document.location.pathname !== "/login";
+  }
 }

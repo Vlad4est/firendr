@@ -4,10 +4,9 @@ const UserModel = require("../data/users.model")
 const PostSchema = new mongoose.Schema(
     {
         id: {
-            type: Number,
+            type: String,
             required: true,
-            unique: true,
-            min: 1
+            unique: true
         },
         title: {
             type: String,
@@ -17,15 +16,15 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: false
         },
-        user_id: {
-            type: Number,
+        author: {
+            type: String,
             required: true,
             validate: {
                 validator: async function(value) {
-                    const user = await UserModel.findOne({ id: value });
+                    const user = await UserModel.findOne({ username: value });
                     return user !== null;
                 },
-                message: "User with the given user_id does not exist."
+                message: "User with the given username does not exist."
             }
         }
     },

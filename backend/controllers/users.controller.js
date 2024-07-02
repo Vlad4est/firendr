@@ -3,9 +3,13 @@ const userService = require("../services/users.service");
 
 const usersController = {
     getUser: async (req, res) =>{
-        userId = parseInt(req.params.id);
-        const foundUser = await userService.getUser(userId);
-        res.send (foundUser);  
+        const username = req.params.username;
+        const foundUser = await userService.getUser(username);
+        if(!foundUser) {
+            res.status(404).send("User not found");
+            return;
+        }
+        res.send(foundUser);  
         
     },
 

@@ -1,8 +1,9 @@
 const UserModel = require("../data/users.model")
+const { v4: uuidv4 } = require('uuid');
 
 const userService ={
-    getUser: async (userId) => {
-        const foundUser = await UserModel.findOne({id: userId});
+    getUser: async (username) => {
+        const foundUser = await UserModel.findOne({username: username});
         return foundUser;
     },
 
@@ -13,6 +14,7 @@ const userService ={
 
     createUser: async (userData) =>{
         console.log("Reached user service");
+        userData.id = uuidv4();
         const user = await UserModel.create(userData);
         console.log(user);
     },

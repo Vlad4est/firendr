@@ -9,6 +9,9 @@ const mongoose = require("mongoose");
 const usersRouter = require("./routers/users.router");
 const postsRouter = require("./routers/posts.router");
 
+const cors = require("cors");
+app.use(cors());
+
 //Donenv import
 require("dotenv").config()
 

@@ -6,6 +6,7 @@ const postService = {
     },
 
     createPost: async (postData) =>{
+        postData.id = uuidv4();
         const post = await PostModel.create(postData);
         console.log(post);
     },
