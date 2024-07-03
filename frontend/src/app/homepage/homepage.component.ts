@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +8,13 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
   username = 'Andrei';
-  userAvatarUrl =
-    'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
-    constructor() {}
+  
+  posts: any;
+    constructor( private appService: AppService) {
+      this.appService.getPosts().subscribe((posts) => {
+        this.posts = posts;
+      });
+    }
 
     getUser() {}
   

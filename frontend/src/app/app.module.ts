@@ -9,13 +9,17 @@ import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
+import { PostComponent } from './post/post.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomepageComponent,
-    TopNavbarComponent
+    TopNavbarComponent,
+    PostComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,

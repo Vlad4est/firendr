@@ -4,7 +4,7 @@
         <div class="subtitle">Sign in to your account</div>
         <input type="text" placeholder="Username"  [(ngModel)]="username">
         <input type="password" placeholder="Password" [(ngModel)]="password"> 
-        <button class="sign-in-btn" (click)="login()">Login</button>
+        <button class="sign-in-btn" (click)="login()" [disabled]="loading">Login</button>
     </div>
 </div>
 

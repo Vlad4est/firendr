@@ -11,7 +11,7 @@ const postsController = {
             await postService.createPost(postData);
             res.status(201).send("Post created");
         } catch (error) {
-            res.status(400).send(error);
+            res.status(404).send(error);
         }
        
     },

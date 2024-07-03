@@ -1,4 +1,5 @@
 const PostModel = require("../data/posts.model");
+const { v4: uuidv4 } = require('uuid');
 
 const postService = {
     getPosts: async () => {
