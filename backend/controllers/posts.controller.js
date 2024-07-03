@@ -9,7 +9,7 @@ const postsController = {
         try {
             const postData = req.body;
             await postService.createPost(postData);
-            res.status(201).send("Post created");
+            res.status(201).send({message: "Post created"});
         } catch (error) {
             res.status(404).send(error);
         }
@@ -29,12 +29,24 @@ const postsController = {
             console.log("am intrat 1");
             const postId = req.params.id;
             const username = req.body.username;
-            const result = await postService.updatePostLikes(postId, username);
-            
-            res.status(200).send(result);
+            await postService.updatePostLikes(postId, username);
+            res.status(200).send("Likes updated");
         } catch (error) {
-            res.status(404).send(error);
+            res.status(404).send("Error "+ error);
         }
+    },
+    getLikes: async (req, res) => {
+        const postId = req.params.id;
+        try {
+            console.log("am intrat 1");
+            const likes = await postService.getLikes(postId);
+            res.send({likes: likes});
+        } catch (error) {
+            console.log("am intrat 2");
+            console.log(error);
+            res.status(400).send(error);
+        }
+       
     }
 }
 

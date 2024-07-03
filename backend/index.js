@@ -16,7 +16,7 @@ app.use(cors());
 require("dotenv").config()
 
 
-const port = 3001;
+const port = 3000;
 app.use(express.json());
 
 //Routers

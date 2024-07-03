@@ -32,10 +32,12 @@ const postService = {
         
             await PostModel.updateOne({ id: postId }, {$push:  {likes: username} });
         }
-    
-
-
+    },
+    getLikes: async (postId) => {
+        const post = await postService.getPost(postId);
+        return post.likes.length;
     }
+    
 
 }
 

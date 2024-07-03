@@ -1,3 +1,4 @@
+const { getLikes } = require("../services/posts.service");
 const userService = require("../services/users.service");
 
 
@@ -40,6 +41,8 @@ const usersController = {
         console.log(`Deleted user with id ${userId}`);
         userService.deleteUser(userId);
     }
+   
+
 }
 
 module.exports = usersController;

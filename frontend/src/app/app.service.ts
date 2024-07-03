@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -16,5 +16,12 @@ export class AppService {
 
   getPosts(): Observable<any> {
     return this.http.get(`http://localhost:3000/posts`);
+  }
+
+  createPost(postData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    return this.http.post(`http://localhost:3000/posts`, postData, { headers });
   }
 }
