@@ -23,6 +23,18 @@ const postsController = {
         } catch (error) {
             res.status(400).send(error);
         }
+    },
+    updatePostLikes: async (req, res) => {
+        try {
+            console.log("am intrat 1");
+            const postId = req.params.id;
+            const username = req.body.username;
+            const result = await postService.updatePostLikes(postId, username);
+            
+            res.status(200).send(result);
+        } catch (error) {
+            res.status(404).send(error);
+        }
     }
 }
 

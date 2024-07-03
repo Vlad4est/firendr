@@ -26,7 +26,8 @@ const PostSchema = new mongoose.Schema(
                 },
                 message: "User with the given username does not exist."
             }
-        }
+        },
+        likes: []
     },
     {
         timestamps: true

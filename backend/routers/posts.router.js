@@ -6,7 +6,7 @@ const postsController = require("../controllers/posts.controller");
 router.get("/", postsController.getPosts);
 //Router for creating a post
 router.post("/", postsController.createPost);
-
+router.patch("/:id/likes", postsController.updatePostLikes);
 router.delete("/:id", postsController.deletePost);
 
 
