@@ -13,7 +13,7 @@ const cors = require("cors");
 app.use(cors());
 
 //Donenv import
-require("dotenv").config()
+require("dotenv").config();
 
 
 const port = 3000;

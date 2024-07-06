@@ -6,22 +6,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
+  private domain: string;
 
-  constructor(private http: HttpClient){ }
+
+  constructor(private http: HttpClient){ 
+    this.domain = "https://friender-backend-ir3eegisoa-ey.a.run.app";
+  }
 
   getUserByUsername(username: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/users/${username}`);
+    return this.http.get(`${this.domain}/users/${username}`);
 
   }
 
   getPosts(): Observable<any> {
-    return this.http.get(`http://localhost:3000/posts`);
+    return this.http.get(`${this.domain}/posts`);
   }
 
   createPost(postData: any): Observable<any> {
     const headers = new HttpHeaders({
       "Content-Type": "application/json"
     });
-    return this.http.post(`http://localhost:3000/posts`, postData, { headers });
+    return this.http.post(`${this.domain}/posts`, postData, { headers });
   }
 }
