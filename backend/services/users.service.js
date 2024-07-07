@@ -16,6 +16,7 @@ const userService ={
         console.log("Reached user service");
         userData.id = uuidv4();
         const user = await UserModel.create(userData);
+        return user;
         console.log(user);
     },
 

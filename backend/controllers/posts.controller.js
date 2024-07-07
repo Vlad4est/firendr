@@ -3,11 +3,14 @@ const postService = require("../services/posts.service")
 
 const postsController = {
     getPosts: async (req, res) => {
-        res.status(200).send(await postService.getPosts());
+        const posts = await postService.getPosts();
+        
+        res.status(200).send(posts.filter(post => post.author === req.user.username));
     },
     createPost: async (req, res) =>{
         try {
-            const postData = req.body;
+            let postData = req.body;
+            postData.author = req.user.username;
             await postService.createPost(postData);
             res.status(201).send({message: "Post created"});
         } catch (error) {

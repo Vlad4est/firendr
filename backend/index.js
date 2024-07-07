@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 //Routers import
 const usersRouter = require("./routers/users.router");
 const postsRouter = require("./routers/posts.router");
+const authRouter = require("./routers/authentification.router");
 
 const cors = require("cors");
 app.use(cors());
@@ -22,6 +23,7 @@ app.use(express.json());
 //Routers
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
+app.use("/auth", authRouter);
 
 
 app.listen(port, () => {

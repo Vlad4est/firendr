@@ -8,6 +8,7 @@
     <input type="text"  placeholder="Description" [(ngModel)]="desciption"> <br>
     <br>
     <button (click)="createPost()">Submit</button>
+    
     <ng-container *ngFor="let post of posts">
     <app-child [post]="post"></app-child>
     </ng-container>
