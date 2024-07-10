@@ -1,10 +1,12 @@
 <div class="container">
     <div class="login-card">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
         <h1>Login into Friendr</h1>
         <div class="subtitle">Sign in to your account</div>
-        <input type="text" placeholder="Username"  [(ngModel)]="username">
-        <input type="password" placeholder="Password" [(ngModel)]="password"> 
-        <button class="sign-in-btn" (click)="login()" [disabled]="loading">Login</button>
+        <input type="text" placeholder="Username" formControlName="username">
+        <input type="password" placeholder="Password" formControlName="password"> 
+        <button type="submit" class="sign-in-btn">Login</button>
+        </form>
     </div>
 </div>
 

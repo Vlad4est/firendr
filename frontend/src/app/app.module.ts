@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { PostComponent } from './post/post.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     TopNavbarComponent,
     PostComponent,
     CreatePostComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

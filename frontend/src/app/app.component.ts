@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'frontend';
 
   isLogedIn(): boolean {
-    return document.location.pathname !== "/login";
+    return document.location.pathname !== "/login" && document.location.pathname !== "/register";
   }
 }

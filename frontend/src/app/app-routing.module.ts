@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { RegisterComponent } from './register/register.component';
+import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -13,11 +15,17 @@ const routes: Routes = [
   },
   {
     path: "homepage",
-    component: HomepageComponent
+    component: HomepageComponent,
+    canActivate: [authGuard]
   },
   {
     path: "createPost",
-    component: CreatePostComponent
+    component: CreatePostComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
   },
   {
     path: "**",
