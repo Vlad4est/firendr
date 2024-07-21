@@ -41,9 +41,14 @@ export class AppService {
   }
 
   createPost(postData: any): Observable<any> {
+    const token = localStorage.getItem("token");
     const headers = new HttpHeaders({
-      "Content-Type": "application/json"
+      "Authorization": `Bearer ${token}`
     });
     return this.http.post(`${this.domain}/posts`, postData, { headers });
+  }
+
+  likePost(postId: string, author: string): Observable<any> {
+    return this.http.patch(`${this.domain}/posts/${postId}/likes`, { author });
   }
 }

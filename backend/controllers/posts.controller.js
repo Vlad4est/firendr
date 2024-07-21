@@ -11,6 +11,7 @@ const postsController = {
         try {
             let postData = req.body;
             postData.author = req.user.username;
+            postData.imageURL = await postService.searchUnsplashImage(postData.title)
             await postService.createPost(postData);
             res.status(201).send({message: "Post created"});
         } catch (error) {
@@ -31,11 +32,12 @@ const postsController = {
         try {
             console.log("am intrat 1");
             const postId = req.params.id;
-            const username = req.body.username;
+            const username = req.body.author;
             await postService.updatePostLikes(postId, username);
-            res.status(200).send("Likes updated");
+            console.log(postId, username);
+            res.status(200).send({message: "Likes updated"});
         } catch (error) {
-            res.status(404).send("Error "+ error);
+            res.status(404).send(error);
         }
     },
     getLikes: async (req, res) => {

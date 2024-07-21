@@ -13,6 +13,7 @@ export class HomepageComponent {
     constructor( private appService: AppService) {
       this.appService.getPosts().subscribe((posts) => {
         this.posts = posts;
+        console.log(this.posts);
       });
     }
 

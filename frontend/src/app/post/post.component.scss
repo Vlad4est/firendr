@@ -77,6 +77,34 @@ $blue: #163ac7;
     color: #1d242999;
   }
   
+
   .post-footer {
     display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .like-btn {
+    background: #f0f2f5;
+    border: none;
+    color: #65676b;
+    padding: 8px 16px;
+    
+    &:hover {
+      background: #e4e6e9;
+    }
+    
+    &.liked {
+      color: $blue;
+      background: #e7f3ff;
+      
+      &:hover {
+        background: #dbe7f2;
+      }
+    }
+  }
+  
+  .like-counter {
+    font-size: 14px;
+    color: #65676b;
   }

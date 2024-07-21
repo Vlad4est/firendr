@@ -25,9 +25,11 @@ export class CreatePostComponent {
       (response) => {
         
         console.log('POST response:', response);
+        alert(response.message)
       },
       (error) => {
         console.log('POST error:', error);
+        alert(error.statusText);
       }
     );
 
