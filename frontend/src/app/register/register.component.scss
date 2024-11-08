@@ -49,4 +49,20 @@
       background-color: darken(#111111, 10%);
     }
   }
+
+  .login-redirect {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  
+    a {
+        color: #db3236;
+        text-decoration: none;
+        font-weight: bold;
+  
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+  }
   

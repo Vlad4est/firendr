@@ -26,7 +26,7 @@ export class RegisterComponent {
         console.log(response.status + " status code")
         console.log(response.body);
         
-        if(response.status == 200) {
+        if(response.status == 201) {
           localStorage.setItem("token", response.body.accessToken);
           let userData: any = jwtDecode(response.body.accessToken);
           localStorage.setItem("username", userData.username);

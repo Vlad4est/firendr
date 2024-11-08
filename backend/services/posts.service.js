@@ -1,6 +1,7 @@
 const PostModel = require("../data/posts.model");
 const axios = require("axios");
 const { v4: uuidv4 } = require('uuid');
+require("dotenv").config();
 
 const postService = {
     getPosts: async () => {
@@ -40,7 +41,7 @@ const postService = {
         return post.likes.length;
     },
     searchUnsplashImage: async (query) => {
-        const UNSPLASH_ACCESS_KEY = "htLC7yav7r7PV6hQZIHEiutAR1Zty6I1-7VUuNveIlA";
+        const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
         try {
             const response = await axios.get('https://api.unsplash.com/search/photos', {
               params: { 

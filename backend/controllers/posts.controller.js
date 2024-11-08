@@ -11,10 +11,17 @@ const postsController = {
         try {
             let postData = req.body;
             postData.author = req.user.username;
-            postData.imageURL = await postService.searchUnsplashImage(postData.title)
+            try {
+                postData.imageURL = await postService.searchUnsplashImage(postData.title);
+            }
+            catch {
+                postData.imageURL = "";
+            }
+            
             await postService.createPost(postData);
             res.status(201).send({message: "Post created"});
         } catch (error) {
+            console.log(error);
             res.status(404).send(error);
         }
        
