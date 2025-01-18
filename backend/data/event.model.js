@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const UserModel = require("../data/users.model")
+const UserModel = require("./users.model")
 
-const PostSchema = new mongoose.Schema(
+const EventSchema = new mongoose.Schema(
     {
         id: {
             type: String,
@@ -16,7 +16,15 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: false
         },
-        author: {
+        location: {
+            type: String,
+            required: true
+        },
+        time: {
+            type: Date,
+            required: true
+        },
+        organizer: {
             type: String,
             required: true,
             validate: {
@@ -27,14 +35,13 @@ const PostSchema = new mongoose.Schema(
                 message: "User with the given username does not exist."
             }
         },
-        imageURL: String,
-        likes: []
+        participants: []
     },
     {
         timestamps: true
     }
 );
 
-const PostModel = mongoose.model("Post", PostSchema);
+const EventModel = mongoose.model("Event", EventSchema);
 
-module.exports = PostModel;
+module.exports = EventModel;

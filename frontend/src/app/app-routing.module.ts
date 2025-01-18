@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { RegisterComponent } from './register/register.component';
 import { authGuard } from './auth.guard';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -27,10 +26,6 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent,
-  },
-  {
-    path: "profile",
-    component: UserProfileComponent
   },
   {
     path: "**",

@@ -1,4 +1,4 @@
-const PostModel = require("../data/posts.model");
+const PostModel = require("../data/event.model");
 const postService = require("../services/posts.service")
 
 const postsController = {

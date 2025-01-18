@@ -1,4 +1,4 @@
-const PostModel = require("../data/posts.model");
+const PostModel = require("../data/event.model");
 const axios = require("axios");
 const { v4: uuidv4 } = require('uuid');
 require("dotenv").config();

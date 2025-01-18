@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 //Routers import
 const usersRouter = require("./routers/users.router");
-const postsRouter = require("./routers/posts.router");
+const postsRouter = require("./routers/event.router");
 const authRouter = require("./routers/authentification.router");
 
 const cors = require("cors");
@@ -31,7 +31,7 @@ app.listen(port, () => {
   mongoose.connect(`mongodb+srv://vlad:${process.env.MONGODB_CONNECTION_STRING}@cluster0.rgkzjm4.mongodb.net/friendr?retryWrites=true&w=majority&appName=Cluster0`)
   .then(async () => {
     console.log("Connected");
-    
+
     /* Testing mongodb creation
     const Cat = mongoose.model("Cat", {name: String});
     const cat1 = await Cat.create({name: "kitty"});

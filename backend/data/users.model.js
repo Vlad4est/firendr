@@ -18,8 +18,18 @@ const UserSchema = mongoose.Schema(
         },
         email: {
             type: String,
-            required: false,
+            required: true,
             match: [/\S+@\S+\.\S+/, 'Email is invalid']
+        },
+        isOrganizer: {
+            type: Boolean,
+            required: true,
+            default: false
+        },
+        //add an array of events but only if the user is an organizer
+        events: {
+            type: [String],
+            required: false
         }
     },
     {
