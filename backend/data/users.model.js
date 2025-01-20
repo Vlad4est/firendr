@@ -23,8 +23,7 @@ const UserSchema = mongoose.Schema(
         },
         isOrganizer: {
             type: Boolean,
-            required: true,
-            default: false
+            required: true
         },
         //add an array of events but only if the user is an organizer
         events: {

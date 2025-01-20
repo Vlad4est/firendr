@@ -14,11 +14,11 @@ const authService = {
         const hashedPassword = await authService.hashPassword(userData.password);
         userData.password = hashedPassword;
         const user = await createUser(userData);
-        const accessToken = jwt.sign({ username: user.username, id: user.id}, process.env.ACCESS_TOKEN_SECRET);
+        const accessToken = jwt.sign({ username: user.username, id: user.id, isOrganizer: user.isOrganizer}, process.env.ACCESS_TOKEN_SECRET);
         return accessToken;
     },
     login: async (user) => {
-        const accessToken = jwt.sign({ username: user.username, id: user.id}, process.env.ACCESS_TOKEN_SECRET);
+        const accessToken = jwt.sign({ username: user.username, id: user.id, isOrganizer: user.isOrganizer}, process.env.ACCESS_TOKEN_SECRET);
         return accessToken;
     }
 }

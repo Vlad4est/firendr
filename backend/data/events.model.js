@@ -24,17 +24,11 @@ const EventSchema = new mongoose.Schema(
             type: Date,
             required: true
         },
-        organizer: {
+        organizerId: {
             type: String,
-            required: true,
-            validate: {
-                validator: async function(value) {
-                    const user = await UserModel.findOne({ username: value });
-                    return user !== null;
-                },
-                message: "User with the given username does not exist."
-            }
+            required: false,
         },
+        pendingInvitations: [],
         participants: []
     },
     {

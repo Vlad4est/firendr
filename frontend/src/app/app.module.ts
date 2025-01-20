@@ -11,6 +11,10 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { PostComponent } from './post/post.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { RegisterComponent } from './register/register.component';
+import { EventComponent } from './event/event.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RequestCardComponent } from './request-card/request-card.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { RegisterComponent } from './register/register.component';
     PostComponent,
     CreatePostComponent,
     RegisterComponent,
+    EventComponent,
+    DashboardComponent,
+    RequestCardComponent,
+    CreateEventComponent,
   
   ],
   imports: [

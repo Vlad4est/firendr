@@ -31,24 +31,65 @@ export class AppService {
     return this.http.post(`${this.domain}/auth/register`, userData, { observe: "response"} );
   }
 
-  getPosts(): Observable<any> {
+  getEvents(): Observable<any> {
     const token = localStorage.getItem("token");
     const headers = new HttpHeaders({
       "Authorization": `Bearer ${token}`
     });
-    return this.http.get(`${this.domain}/posts`, { headers });
+    return this.http.get(`${this.domain}/events`, { headers });
 
   }
+  getRequestsByOrganizerId(): Observable<any> {
+    const token = localStorage.getItem("token");
+    const organizerId = localStorage.getItem("id");
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+    return this.http.get(`${this.domain}/events/${organizerId}`, { headers });
+  }
 
-  createPost(postData: any): Observable<any> {
+  getEventByCurrentUserId(): Observable<any> {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    })
+    return this.http.get(`${this.domain}/events/${id}`, { headers });
+  }
+
+  createEvent(eventData: any): Observable<any> {
     const token = localStorage.getItem("token");
     const headers = new HttpHeaders({
       "Authorization": `Bearer ${token}`
     });
-    return this.http.post(`${this.domain}/posts`, postData, { headers });
+    return this.http.post(`${this.domain}/events`, eventData, { headers });
   }
 
-  likePost(postId: string, author: string): Observable<any> {
-    return this.http.patch(`${this.domain}/posts/${postId}/likes`, { author });
+  requestInvite(eventId: string): Observable<any> {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+    return this.http.post(`${this.domain}/events/${eventId}`, {eventId} ,{ headers });
   }
+
+  acceptRequest(eventId: string, username: string): Observable<any> {
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+    console.log({eventId, username});
+    return this.http.post(`${this.domain}/events/accept`, {eventId, username} , { headers });
+  }
+
+  declineRequest(eventId: string, username: string): Observable<any> {
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      "Authorization": `Bearer ${token}`
+    });
+    console.log({eventId, username});
+    return this.http.post(`${this.domain}/events/decline`, {eventId, username} , { headers });
+  }
+
 }

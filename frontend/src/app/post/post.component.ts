@@ -7,7 +7,7 @@ import { AppService } from '../app.service';
   styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit{
-  @Input() post: any;
+  @Input() event: any;
   likeCount: number = 0;
   isLiked: boolean = false;
   imageURL: string = "";
@@ -18,31 +18,18 @@ export class PostComponent implements OnInit{
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-    this.imageURL = this.post?.imageURL;
-    this.likeCount = this.post?.likes?.length;
+    this.imageURL = this.event?.imageURL;
+    this.likeCount = this.event?.likes?.length;
     let username = localStorage.getItem("username");
-    if(this.post?.likes?.includes(username)) {
+    if(this.event?.likes?.includes(username)) {
       this.isLiked = true;
     }
     else {
       this.isLiked = false;
     }
   }
+  likePost(): void {}
 
-  likePost(){
-    this.isLiked = !this.isLiked;
-    this.likeCount += this.isLiked ? 1 : -1;
-    let username = localStorage.getItem("username")  || "";
-    this.appService.likePost(this.post.id, username).subscribe(
-      response => {
-        console.log('Likes updated successfully');
-        // Handle successful update (e.g., update UI)
-      },
-      error => {
-        console.error('Error updating likes:', error);
-        // Handle error (e.g., show error message to user)
-      }
-    );
-  }
+  
 
 }

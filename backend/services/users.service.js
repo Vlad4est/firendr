@@ -6,6 +6,10 @@ const userService ={
         const foundUser = await UserModel.findOne({username: username});
         return foundUser;
     },
+    getUserById: async (userId) => {
+        const foundUser = await UserModel.findOne({id: userId});
+        return foundUser;
+    },
 
     getUsers: async () => {
         const users = await UserModel.find();
@@ -23,6 +27,14 @@ const userService ={
     deleteUser: (userId) =>{
         console.log(`Reached service user ${userId}`);
         console.log(userId);
+    },
+    updateEventList: async (userId, eventId) => {
+        const user = await userService.getUserById(userId);
+        if(user.events.includes(eventId)) {
+            await UserModel.updateOne({ id: userId }, {$pull:  {events: eventId} });
+        } else {
+            await UserModel.updateOne({ id: userId }, {$push:  {events: eventId} });
+        }
     }
 
 }

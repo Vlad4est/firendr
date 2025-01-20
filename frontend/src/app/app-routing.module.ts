@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { RegisterComponent } from './register/register.component';
 import { authGuard } from './auth.guard';
+import { EventComponent } from './event/event.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 const routes: Routes = [
   {
@@ -26,6 +29,13 @@ const routes: Routes = [
   {
     path: "register",
     component: RegisterComponent,
+  },
+  {path: "dashboard", 
+    component: DashboardComponent
+  },
+  {
+    path: "createEvent",
+    component: CreateEventComponent
   },
   {
     path: "**",

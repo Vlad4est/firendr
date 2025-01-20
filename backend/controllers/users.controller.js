@@ -1,4 +1,3 @@
-const { getLikes } = require("../services/posts.service");
 const userService = require("../services/users.service");
 
 

@@ -1,65 +1,97 @@
-const PostModel = require("../data/event.model");
-const postService = require("../services/posts.service")
+const EventModel = require("../data/events.model");
+const { reciveInvitationRequest } = require("../services/events.service");
+const eventService = require("../services/events.service")
 
-const postsController = {
-    getPosts: async (req, res) => {
-        const posts = await postService.getPosts();
+const eventsController = {
+
+    getEvents: async (req, res) => {
+        const events = await eventService.getEvents();
         
-        res.status(200).send(posts.filter(post => post.author === req.user.username));
+        res.status(200).send(events);
     },
-    createPost: async (req, res) =>{
+    getRequestsByOrganizerId: async (req, res) => {
+        let events = await eventService.getEvents();
+        
+        events = events.filter(event => event.organizerId === req.user.id);
+        const requests = events.flatMap(event => {
+            return event.pendingInvitations.map(username => {
+              return {
+                username: username,
+                event: {
+                  id: event.id,
+                  title: event.title,
+                  dateTime: event.time
+                }
+              };
+            });
+          });
+        res.status(200).send(requests);
+    },
+    
+    createEvent: async (req, res) =>{
         try {
-            let postData = req.body;
-            postData.author = req.user.username;
-            try {
-                postData.imageURL = await postService.searchUnsplashImage(postData.title);
-            }
-            catch {
-                postData.imageURL = "";
-            }
-            
-            await postService.createPost(postData);
-            res.status(201).send({message: "Post created"});
+            let eventData = req.body;
+            console.log(eventData);
+            await eventService.createEvent(eventData);
+            res.status(201).send({message: "Event created"});
         } catch (error) {
             console.log(error);
             res.status(404).send(error);
         }
        
     },
-    deletePost: async (req, res) => {
+    deleteEvent: async (req, res) => {
         try {
-            postId = parseInt(req.params.id);
-            const result = await postService.deletePost(postId);
+            eventId = parseInt(req.params.id);
+            const result = await eventService.deleteEvent(eventId);
             res.status(200).send(result);
         } catch (error) {
             res.status(400).send(error);
         }
     },
-    updatePostLikes: async (req, res) => {
+    reciveInvitationRequest: async (req, res) => {
         try {
-            console.log("am intrat 1");
-            const postId = req.params.id;
-            const username = req.body.author;
-            await postService.updatePostLikes(postId, username);
-            console.log(postId, username);
-            res.status(200).send({message: "Likes updated"});
+            const eventId = req.params.id;
+            const username = req.user.username;
+            const result = await eventService.reciveInvitationRequest(eventId, username);
+            res.status(200).send({message: "Invitation received"});
         } catch (error) {
-            res.status(404).send(error);
-        }
-    },
-    getLikes: async (req, res) => {
-        const postId = req.params.id;
-        try {
-            console.log("am intrat 1");
-            const likes = await postService.getLikes(postId);
-            res.send({likes: likes});
-        } catch (error) {
-            console.log("am intrat 2");
-            console.log(error);
             res.status(400).send(error);
         }
-       
+    },
+    acceptRequest: async (req, res) => {
+        console.log("hello")
+        try {
+            console.log("Am intrat request")
+            console.log(req.body)
+            console.log(req.user)
+            const eventId = req.body.eventId;
+            const organizerId = req.user.id;
+            const username = req.body.username;
+            console.log(eventId, organizerId, username);
+            const result = await eventService.acceptRequest(eventId, organizerId, username);
+            res.status(200).send({invitationAccepted: result});
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({message: error});
+        }
+    },
+    declineRequest: async (req, res) => {
+        try {
+            console.log("Am intrat request")
+            console.log(req.body)
+            console.log(req.user)
+            const eventId = req.body.eventId;
+            const organizerId = req.user.id;
+            const username = req.body.username;
+            console.log(eventId, organizerId, username);
+            const result = await eventService.declineRequest(eventId, organizerId, username);
+            res.status(200).send({invitationDeclined: result});
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({message: error});
+        }
     }
 }
 
-module.exports = postsController;
+module.exports = eventsController;

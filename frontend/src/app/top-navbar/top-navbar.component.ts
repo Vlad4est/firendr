@@ -12,12 +12,15 @@ export class TopNavbarComponent {
   username = localStorage.getItem("username");
   userAvatarUrl =
     'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
-
+    isOrganizer: boolean = localStorage.getItem("isOrganizer") === "true";
     constructor(private router: Router) {}
 
     logout(){
       localStorage.clear();
       this.router.navigate(["/login"]);
 
+    }
+    navigateToCreateEvent() {
+      this.router.navigate(["/createEvent"]);
     }
 }

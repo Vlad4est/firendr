@@ -15,12 +15,15 @@ export class RegisterComponent {
   registerForm = this.fb.group({
     username : "",
     password: "",
-    email: ""
+    email: "",
+    isOrganizer: false
+    
   });
 
   register() {
     const formData = this.registerForm.value;
-    this.appService.register({username: formData.username, password: formData.password, email: formData.email}).pipe(first()).subscribe({
+    console.log(formData);
+    this.appService.register({username: formData.username, password: formData.password, email: formData.email, isOrganizer: formData.isOrganizer}).pipe(first()).subscribe({
       next: (response: any) => {
         console.log("hiiii")
         console.log(response.status + " status code")
@@ -31,6 +34,7 @@ export class RegisterComponent {
           let userData: any = jwtDecode(response.body.accessToken);
           localStorage.setItem("username", userData.username);
           localStorage.setItem("id", userData.id);
+          localStorage.setItem("isOrganizer", userData.isOrganizer);
           this.router.navigate(["homepage"]);
         }
       },

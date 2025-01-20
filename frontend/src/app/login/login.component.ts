@@ -30,7 +30,13 @@ export class LoginComponent  {
           let userData: any = jwtDecode(response.body.accessToken);
           localStorage.setItem("username", userData.username);
           localStorage.setItem("id", userData.id);
-          this.router.navigate(["homepage"]);
+          localStorage.setItem("isOrganizer", userData.isOrganizer);
+          if(userData.isOrganizer) {
+          this.router.navigate(["dashboard"]);
+        }
+          else {
+            this.router.navigate(["homepage"]);
+          }
         }
       },
       error: (error) => {
